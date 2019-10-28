@@ -7,25 +7,27 @@ import SearchScreen from "../screens/Search"
 import { createAppContainer } from 'react-navigation';
 import {BG_COLOR} from "../constants/Color";
 import TabBarIcon from "../components/TabBarIcon";
+import { createStack } from "./config"
+
 
 const TabNavigation = createBottomTabNavigator(
     {
         Movie : {
-            screen: MovieScreen, 
+            screen: createStack(MovieScreen, "Movies"), 
             navigationOptions : {
                 tabBarIcon : ({focused}) => 
                 <TabBarIcon focused = {focused} name={Platform === "ios" ? "ios-film" : "md-film"}/>
                 }
             },
         TV : {
-            screen : TVScreen, 
+            screen :  createStack(TVScreen, "TV"), 
             navigationOptions : {
                 tabBarIcon : ({focused}) => 
                 <TabBarIcon focused = {focused} name={Platform === "ios" ? "ios-tv" : "md-tv"}/>
                 }
             },
         Search : {
-            screen : SearchScreen, 
+            screen : createStack(SearchScreen, "Search"), 
             navigationOptions : {
                 tabBarIcon : ({focused}) => 
                 <TabBarIcon focused = {focused} name={Platform === "ios" ? "ios-search" : "md-search"}/>}
